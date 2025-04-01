@@ -24,12 +24,11 @@ public class Problem {
     private static int helper(Salamander patient, Set<Salamander> infected) {
         if (infected.contains(patient) || patient == null) return 0;
         int count = 0;
+        
         infected.add(patient);
+        if (patient.getAge() < 3) count++;
 
         for(Salamander contact : patient.getContacts()) {
-            if (contact.getAge() < 3) {
-                count++;
-            }
             count += helper(contact, infected);
         }
         return count;
