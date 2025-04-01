@@ -1,3 +1,7 @@
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Stack;
+
 public class Problem {
     /**
      * Returns how many salamanders less than 3 years old will be at risk from a
@@ -15,6 +19,30 @@ public class Problem {
      * @return the number of salamanders less than 3 years old that may be infected
      */
     public static int countSeriousInfections(Salamander initialPatient) {
-        return -1;
+        if (initialPatient == null) return 0;
+
+        Set<Salamander> visited = new HashSet<>();
+        Stack<Salamander> stack = new Stack<>();
+        int threeYearOldSallys = 0;
+
+        stack.push(initialPatient);
+
+        while(!stack.isEmpty()) {
+            Salamander current = stack.pop();
+
+            if (!visited.contains(current)) {
+                visited.add(current);
+
+                if (current.getAge() <= 3) {
+                    threeYearOldSallys++;
+                }
+
+                for (Salamander contact : current.getContacts()) {
+                    stack.push(contact);
+                }
+            }
+        }
+
+        return threeYearOldSallys;
     }
 }
