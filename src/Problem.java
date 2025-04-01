@@ -25,6 +25,7 @@ public class Problem {
 
     public static int countSeriousInfections(Salamander current, int count, Set<Salamander> visited) {
         if (current == null || visited.contains(current)) return count;
+        visited.add(current);
         
         if (current.getAge() < 3) count++;
 
