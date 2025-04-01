@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Problem {
     /**
      * Returns how many salamanders less than 3 years old will be at risk from a
@@ -15,6 +17,24 @@ public class Problem {
      * @return the number of salamanders less than 3 years old that may be infected
      */
     public static int countSeriousInfections(Salamander initialPatient) {
-        return -1;
+        //account for nulls
+        //make a set 
+        //call to helper method
+
+        if (initialPatient == null) return 0;
+
+        Set<Salamander> visited = new HashSet<>();
+
+        return countSeriousInfectionsHelper(initialPatient, visited);
+
+    }
+
+    private static int countSeriousInfectionsHelper(Salamander current, Set<Salamander> visited) {
+        //base case, check for nulls 
+        //mark the visited
+        //logic, include the initial patient if it is less than 3 years old 
+        //for each 
+            //traverse
+            //
     }
 }
