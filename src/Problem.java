@@ -1,3 +1,5 @@
+import java.util.Set;
+
 public class Problem {
     /**
      * Returns how many salamanders less than 3 years old will be at risk from a
@@ -16,5 +18,19 @@ public class Problem {
      */
     public static int countSeriousInfections(Salamander initialPatient) {
         return -1;
+    }
+
+    private static int helper(Salamander patient, Set<Salamander> infected) {
+        if (infected.contains(patient) || patient == null) return 0;
+        int count = 0;
+        infected.add(patient);
+
+        for(Salamander contact : patient.getContacts()) {
+            if (contact.getAge() < 3) {
+                count++;
+            }
+            count += helper(contact, infected);
+        }
+        return count;
     }
 }
