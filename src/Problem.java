@@ -36,5 +36,19 @@ public class Problem {
         //for each 
             //traverse
             //
+        if (current == null || visited.contains(current)) return 0;
+
+        visited.add(current);
+
+        int count = 0; 
+
+        if(current.getAge() < 3) {
+            count++;
+        }
+
+        for (Salamander neighbor : current.getContacts()) {
+                count += countSeriousInfectionsHelper(neighbor, visited);
+        }
+        return count;
     }
 }
