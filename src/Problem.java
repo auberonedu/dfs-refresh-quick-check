@@ -18,7 +18,7 @@ public class Problem {
      *
      * @param initialPatient the first salamander to be infected
      * @return the number of salamanders less than 3 years old that may be
-     * infected
+     *         infected
      */
     public static int countSeriousInfections(Salamander initialPatient) {
         if (initialPatient.getAge() < 3) {
@@ -40,8 +40,9 @@ public class Problem {
         for (var neighbor : initialPatient.getContacts()) {
             if (!visited.contains(neighbor)) {
                 if (neighbor.getAge() < 3) {
-                    count += countSeriousInfectionsHelper(neighbor, visited);
+                    count++;
                 }
+                count += countSeriousInfectionsHelper(neighbor, visited);
             }
         }
 
