@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class Problem {
     /**
      * Returns how many salamanders less than 3 years old will be at risk from a
@@ -8,13 +10,35 @@ public class Problem {
      * and so on. Salamanders of any age can catch and spread the disease, but
      * it is only a serious risk for salamanders strictly less than 3 years old.
      * 
-     * Include the initial patient in the count iff the initial patient is less
+     * Include the initial patient in the count if the initial patient is less
      * than 3 years old.
      * 
      * @param initialPatient the first salamander to be infected
      * @return the number of salamanders less than 3 years old that may be infected
      */
     public static int countSeriousInfections(Salamander initialPatient) {
-        return -1;
+        Set<Salamander> visited = new HashSet<>(); 
+        Queue<Salamander> cueBall = new LinkedList<>();
+
+        int count = 0;
+        cueBall.add(initialPatient);
+
+        while (!cueBall.isEmpty()) {
+            Salamander current = cueBall.poll();
+
+            if (visited.contains(current)) continue;
+            visited.add(current);
+
+            if (current.getAge() < 3) {
+                count++;
+            }
+
+            for (Salamander contact : current.getContacts()) {
+                if (!visited.contains(contact)) {
+                    cueBall.add(contact);
+                }
+            }
+        }
+        return count;
     }
 }
