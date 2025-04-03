@@ -5,6 +5,7 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+//works
 public class ProblemTest {
     Salamander sal;
     Salamander sally;
