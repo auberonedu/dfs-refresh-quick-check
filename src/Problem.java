@@ -19,24 +19,25 @@ public class Problem {
     public static int countSeriousInfections(Salamander initialPatient) {
         Set<Salamander> visited = new HashSet<>();
 
-        return helperCount(initialPatient, visited);
+        int counter = 0;
+        return helperCount(initialPatient, visited, counter);
     }
 
-    public static int helperCount(Salamander initialPatient, Set<Salamander> visited) {
+    public static int helperCount(Salamander initialPatient, Set<Salamander> visited, int count) {
         if(visited.contains(initialPatient)) {
             return 0;
         }
 
-        int count = 0;
+        
 
         if(initialPatient.getAge() < 3) {
-            count = 1;
+            count++;
         }
 
         visited.add(initialPatient);
 
         for(Salamander patients : initialPatient.getContacts()) {
-            
+            helperCount(patients, visited, count);
         }
 
         return count;
