@@ -18,15 +18,26 @@ public class Problem {
      * @return the number of salamanders less than 3 years old that may be infected
      */
     public static int countSeriousInfections(Salamander initialPatient) {
-            Set<Salamander> visited = new HashSet<>();
-            return countSeriousInfectionsHelper(initialPatient, visited);
-    }
-    public static int countSeriousInfectionsHelper(Salamander current, Set<Salamander> visited) {
-    if (visited.contains(current)) {
-        return 0;
+        Set<Salamander> visited = new HashSet<>();
+        return dfs(initialPatient, visited);
     }
 
-    return 0;
-
-   }
+    public static int dfs(Salamander current, Set<Salamander> visited) {
+        if (visited.contains(current)) {
+            return 0;
+        }
+    
+        visited.add(current);
+    
+        int count = 0;
+        if (current.getAge() < 3) {
+            count++;
+        }
+    
+        for (Salamander contact : current.getContacts()) {
+            count += dfs(contact, visited);
+        }
+    
+        return count;
+    }
 }
